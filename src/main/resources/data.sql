@@ -43,6 +43,6 @@ insert into BOOK_AUTHOR values (12,6)
 insert into BOOK_AUTHOR values (13,6)
 
 
-insert into MESSAGES values (1,'2018-12-01','attila.kolya@yahoo.com1','Hello,ce faci ma1?','Attila1','07404815141',false)
-insert into MESSAGES values (2,'2018-12-01','attila.kolya@yahoo.com2','Hello,ce faci ma2?','Attila2','07404815142',false)
-insert into MESSAGES values (3,'2018-12-01','attila.kolya@yahoo.com3','Hello,ce faci ma3?','Attila3','07404815143',false)
+insert into MESSAGES values (1,'2018-12-13T07:04:44.488Z','attila.kolya@yahoo.com1','Hello,ce faci ma1?','Attila1','07404815141',false)
+insert into MESSAGES values (2,'2018-12-13T07:04:44.488Z','attila.kolya@yahoo.com2','Hello,ce faci ma2?','Attila2','07404815142',false)
+insert into MESSAGES values (3,'2018-12-13T07:04:44.488Z','attila.kolya@yahoo.com3','Hello,ce faci ma3?','Attila3','07404815143',false)

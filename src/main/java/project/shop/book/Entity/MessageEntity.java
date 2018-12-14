@@ -8,7 +8,8 @@ import java.sql.Date;
 public class MessageEntity {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "seq",sequenceName = "seq",initialValue = 4)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator ="seq" )
     @Column(name = "message_id")
     private long id;
 
@@ -22,7 +23,7 @@ public class MessageEntity {
     private String email;
 
     @Column(nullable = true,name = "date")
-    private Date date;
+    private String date;
 
     @Column(nullable = false,name = "message")
     private String message;
@@ -57,11 +58,11 @@ public class MessageEntity {
         this.email = email;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
