@@ -1,6 +1,12 @@
 package project.shop.book.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Users")
@@ -36,7 +42,18 @@ public class UserEntity {
     private String phone;
 
     @Column(nullable = false,unique = true)
+    @JsonIgnore
     private String password;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "users")
+    private List<RoleEntity> roles = new ArrayList<>();
+
 
     public UserEntity() {
     }
@@ -119,5 +136,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
+
+    public List<RoleEntity> getRoles() {
+        return roles;
     }
 }
