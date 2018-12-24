@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import project.shop.book.Entity.LoginDto;
+import project.shop.book.Entity.TokenEntity;
 import project.shop.book.Entity.UserEntity;
 import project.shop.book.service.UserService;
 
@@ -14,16 +15,20 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PostMapping("/signin")
-    public String login(@RequestBody @Valid LoginDto loginDto) {
-        return userService.signin(loginDto.getEmail(), loginDto.getPassword()).orElseThrow(()->
-                new HttpServerErrorException(HttpStatus.FORBIDDEN, "Login Failed"));
+    public TokenEntity login(@RequestBody @Valid LoginDto loginDto) {
+
+        TokenEntity tokenEntity = new TokenEntity();
+         tokenEntity.setToken(userService.signin(loginDto.getEmail(), loginDto.getPassword()).orElseThrow(()->
+                new HttpServerErrorException(HttpStatus.FORBIDDEN, "Login Failed")));
+         return tokenEntity;
     }
 
     @PostMapping("/signup")
