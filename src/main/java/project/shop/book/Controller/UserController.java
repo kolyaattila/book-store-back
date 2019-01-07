@@ -23,8 +23,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/signin")
-    public TokenEntity login(@RequestBody @Valid LoginDto loginDto) {
-
+    public TokenEntity login( @RequestBody LoginDto loginDto) {
+        System.out.println(loginDto);
         TokenEntity tokenEntity = new TokenEntity();
          tokenEntity.setToken(userService.signin(loginDto.getEmail(), loginDto.getPassword()).orElseThrow(()->
                 new HttpServerErrorException(HttpStatus.FORBIDDEN, "Login Failed")));
