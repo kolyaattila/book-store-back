@@ -42,7 +42,7 @@ public class UserEntity {
     private String phone;
 
     @Column(nullable = false,unique = true)
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
 
 
@@ -144,5 +144,22 @@ public class UserEntity {
 
     public List<RoleEntity> getRoles() {
         return roles;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

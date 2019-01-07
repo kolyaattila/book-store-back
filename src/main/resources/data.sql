@@ -52,10 +52,10 @@ insert into Roles values (1,null,'admin')
 insert into Roles values (2,null,'user')
 
 
-insert into users values (1,'addres','city','country','email@a','admin','admin','$2a$12$ZhGS.zcWt1gnZ9xRNp7inOvo5hIT0ngN7N.pN939cShxKvaQYHnnu','phone','zipcode')
-insert into users values (2,'addres','city','country','email2@b','admin','admin','123456','phone2','zipcode')
+insert into users values (4,'addres','city','country','email@a','admin','admin','$2a$12$ZhGS.zcWt1gnZ9xRNp7inOvo5hIT0ngN7N.pN939cShxKvaQYHnnu','phone','zipcode')
+insert into users values (5,'addres','city','country','email2@b','admin','admin','$2a$12$qXv3AG6O/RzXdI/yLCnmRO8aJ2jdrTmeuizIYYEq/FNUcoB10rd7W','phone2','zipcode')
 
 
-insert into user_role values (1,1)
-insert into user_role values (1,2)
-insert into user_role values (2,2)
+insert into user_role values (2,5)
+insert into user_role values (2,4)
+insert into user_role values (1,4)

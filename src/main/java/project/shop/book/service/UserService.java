@@ -62,6 +62,7 @@ public class UserService {
 
 
     public Optional<UserEntity> signup(UserEntity userTemp) {
+        System.out.print(userTemp);
         LOGGER.info("New user attempting to sign in");
         Optional<UserEntity> user = Optional.empty();
         if (!userRepository.findByEmail(userTemp.getEmail()).isPresent()) {
