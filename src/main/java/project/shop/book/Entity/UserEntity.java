@@ -55,7 +55,22 @@ public class UserEntity {
     private List<RoleEntity> roles = new ArrayList<>();
 
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
+    @JsonIgnore
+    private List<SellEntity> sellEntityList = new ArrayList<>();
+
+
     public UserEntity() {
+    }
+
+    public List<SellEntity> getSellEntityList() {
+        return sellEntityList;
+    }
+
+    public void setSellEntityList(List<SellEntity> sellEntityList) {
+        this.sellEntityList = sellEntityList;
     }
 
     public Long getUserId() {

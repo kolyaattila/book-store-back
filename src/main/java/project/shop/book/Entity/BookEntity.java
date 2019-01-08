@@ -6,6 +6,7 @@ import com.sun.istack.internal.NotNull;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -54,6 +55,11 @@ public class BookEntity {
     private Set<AuthorEntity> autorEntities = new HashSet<AuthorEntity>();
 
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "book")
+    @JsonIgnore
+    private List<InventoryEntity> inventoryEntityList;
 
     public BookEntity() {
     }
@@ -133,5 +139,13 @@ public class BookEntity {
 
     public void setAutorEntities(Set<AuthorEntity> autorEntities) {
         this.autorEntities = autorEntities;
+    }
+
+    public List<InventoryEntity> getInventoryEntityList() {
+        return inventoryEntityList;
+    }
+
+    public void setInventoryEntityList(List<InventoryEntity> inventoryEntityList) {
+        this.inventoryEntityList = inventoryEntityList;
     }
 }

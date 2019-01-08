@@ -1,9 +1,12 @@
 package project.shop.book.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Sell")
@@ -11,6 +14,51 @@ public class SellEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    @Column(name = "sell_id")
+    private Long sellId;
 
+
+    private Date date;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private UserEntity user;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "sell")
+    @JsonIgnore
+    private List<InventoryEntity> inventoryEntityList;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public List<InventoryEntity> getInventoryEntityList() {
+        return inventoryEntityList;
+    }
+
+    public void setInventoryEntityList(List<InventoryEntity> inventoryEntityList) {
+        this.inventoryEntityList = inventoryEntityList;
+    }
+
+    public Long getSellId() {
+        return sellId;
+    }
 }

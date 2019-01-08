@@ -18,11 +18,36 @@ public class InventoryEntity {
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "book_id", nullable = false)
+    @JoinColumn(name = "book_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
-    private BookEntity bookEntity;
+    private BookEntity book;
 
-    @NotNull
-    private boolean inchiriata;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sell_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    //@JsonIgnore
+    private SellEntity sell;
+
+    public long getInventoryId() {
+        return inventoryId;
+    }
+
+    public BookEntity getBook() {
+        return book;
+    }
+
+    public void setBook(BookEntity book) {
+        this.book = book;
+    }
+
+    public SellEntity getSell() {
+        return sell;
+    }
+
+    public void setSell(SellEntity sell) {
+        this.sell = sell;
+    }
 }

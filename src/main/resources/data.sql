@@ -53,9 +53,12 @@ insert into Roles values (2,null,'user')
 
 
 insert into users values (4,'addres','city','country','email@a','admin','admin','$2a$12$ZhGS.zcWt1gnZ9xRNp7inOvo5hIT0ngN7N.pN939cShxKvaQYHnnu','phone','zipcode')
-insert into users values (5,'addres','city','country','email2@b','admin','admin','$2a$12$qXv3AG6O/RzXdI/yLCnmRO8aJ2jdrTmeuizIYYEq/FNUcoB10rd7W','phone2','zipcode')
+insert into users values (5,'addres','city','country','email2@b','admin','admin','$2a$12$2gAiATfBplF.UtzRC.4pnu7S1NgHbykOT.9AL3mCr9Gfp6FU6gBk.','phone2','zipcode')
 
 
 insert into user_role values (2,5)
 insert into user_role values (2,4)
 insert into user_role values (1,4)
+
+
+insert into Inventory values (1,1,NULL)
