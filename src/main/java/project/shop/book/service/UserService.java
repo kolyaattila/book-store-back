@@ -52,7 +52,7 @@ public class UserService {
         if (user.isPresent()) {
             try {
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-                token = Optional.of(jwtProvider.createToken(email, user.get().getRoles()));
+                token = Optional.of(jwtProvider.createToken(email,user.get().getUserId().toString(), user.get().getRoles()));
             } catch (AuthenticationException e){
                 LOGGER.info("Log in failed for user {}", email);
             }

@@ -30,8 +30,8 @@ public class JwtProvider {
         this.validityInMilliseconds = validityInMilliseconds;
     }
 
-    public String createToken(String username, List<RoleEntity> roles) {
-        Claims claims = Jwts.claims().setSubject(username);
+    public String createToken(String username,String id, List<RoleEntity> roles) {
+        Claims claims = Jwts.claims().setSubject(username).setId(id);
         claims.put(ROLES_KEY, roles.stream().map(role ->new SimpleGrantedAuthority(role.getAuthority()))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList()));
