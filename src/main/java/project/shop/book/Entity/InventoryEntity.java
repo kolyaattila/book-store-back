@@ -50,4 +50,13 @@ public class InventoryEntity {
     public void setSell(SellEntity sell) {
         this.sell = sell;
     }
+
+    @Override
+    public String toString() {
+        return "InventoryEntity{" +
+                "inventoryId=" + inventoryId +
+                ", book=" + book +
+                ", sell=" + sell +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package project.shop.book.Controller;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.shop.book.Entity.BookEntity;
@@ -10,10 +11,12 @@ import project.shop.book.Repository.InventoryRepository;
 import project.shop.book.Repository.SellRepository;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/inventory")
+@RequestMapping("inventory")
 @CrossOrigin("*")
 public class InventoryController {
 
@@ -34,7 +37,7 @@ public class InventoryController {
                 NrDisponibile++;
             }
         }
-        if(NrDisponibile==numar){
+        if(NrDisponibile>=numar){
             return true;
         }
         else{
@@ -43,15 +46,24 @@ public class InventoryController {
     }
 
     @PostMapping("/sell/{id}")
-    InventoryEntity addSell(@RequestBody @Valid BookEntity book,@PathVariable("number") long id){
-
-        List<InventoryEntity> temp = this.inventoryRepository.findByBook_BookId(book.getBookId());
-
-        for(InventoryEntity element : temp) {
-                if(element.getSell()==null){
-                    element.setSell(this.sellRepository.findById(id).orElse(null));
-                    return this.inventoryRepository.save(element);
-                }
+    synchronized InventoryEntity addSell(@RequestBody @Valid BookEntity book,@PathVariable("id") long id) {
+        //System.out.println("out if"+id+"book id"+book.getBookId());
+        List<InventoryEntity> inventoryEntityList = this.inventoryRepository.findAllByBook_BookId(book.getBookId());
+        Optional<InventoryEntity> inventoryEntity = inventoryEntityList.stream()
+                .filter(element -> element.getSell()==null)
+                .findFirst();
+        try{
+            if(inventoryEntity.isPresent()){
+                    inventoryEntity.get().setSell(this.sellRepository.findById(id).orElseThrow(() -> new NotFoundException("Not found Sell entity with id "+id)));
+                    //System.out.println("in if"+inventoryEntity.get().getInventoryId());
+                    return this.inventoryRepository.save(inventoryEntity.get());
+            }
+            else{
+                throw new NotFoundException("Not found inventory Entity for book id "+book.getBookId());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
         }
         return null;
     }

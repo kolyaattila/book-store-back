@@ -23,7 +23,6 @@ public class SellEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private UserEntity user;
 
 
@@ -60,5 +59,14 @@ public class SellEntity {
 
     public Long getSellId() {
         return sellId;
+    }
+
+    @Override
+    public String toString() {
+        return "SellEntity{" +
+                "sellId=" + sellId +
+                ", date=" + date +
+                ", user=" + user +
+                '}';
     }
 }

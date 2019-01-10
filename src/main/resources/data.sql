@@ -62,3 +62,5 @@ insert into user_role values (1,4)
 
 
 insert into Inventory values (1,1,NULL)
+insert into Inventory values (2,1,NULL)
+insert into Inventory values (3,2,NULL)
