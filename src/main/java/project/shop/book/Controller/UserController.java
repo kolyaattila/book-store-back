@@ -32,7 +32,6 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public UserEntity signup(@RequestBody @Valid UserEntity userEntity){
         return userService.signup(userEntity).orElseThrow(() -> new HttpServerErrorException(HttpStatus.BAD_REQUEST,"User already exists"));

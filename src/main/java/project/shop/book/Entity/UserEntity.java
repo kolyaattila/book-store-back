@@ -42,7 +42,6 @@ public class UserEntity {
     private String phone;
 
     @Column(nullable = false,unique = true)
-    @JsonIgnore
     private String password;
 
 
