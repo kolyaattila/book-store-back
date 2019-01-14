@@ -3,6 +3,7 @@ package project.shop.book.Controller;
 import javassist.NotFoundException;
 import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import project.shop.book.Entity.SellEntity;
 import project.shop.book.Repository.SellRepository;
@@ -35,6 +36,7 @@ public class SellController {
         return this.sellRepository.save(sellEntity);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public SellEntity getSellEntity(@PathVariable("id") long id){
         try {
@@ -45,7 +47,7 @@ public class SellController {
         }
         return null;
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/sales")
     public List<SellEntity> getSales(){
         return this.sellRepository.findAll();

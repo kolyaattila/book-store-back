@@ -52,15 +52,27 @@ insert into Roles values (1,null,'admin')
 insert into Roles values (2,null,'user')
 
 
-insert into users values (4,'addres','city','country','email@a','admin','admin','$2a$12$ZhGS.zcWt1gnZ9xRNp7inOvo5hIT0ngN7N.pN939cShxKvaQYHnnu','phone','zipcode')
-insert into users values (5,'addres','city','country','email2@b','admin','admin','$2a$12$2gAiATfBplF.UtzRC.4pnu7S1NgHbykOT.9AL3mCr9Gfp6FU6gBk.','phone2','zipcode')
+insert into users values (7,'addres','city','country','email@a','admin','admin','$2a$12$ZhGS.zcWt1gnZ9xRNp7inOvo5hIT0ngN7N.pN939cShxKvaQYHnnu','phone','zipcode')
+insert into users values (8,'addres','city','country','email2@b','admin','admin','$2a$12$2gAiATfBplF.UtzRC.4pnu7S1NgHbykOT.9AL3mCr9Gfp6FU6gBk.','phone2','zipcode')
 
 
-insert into user_role values (2,5)
-insert into user_role values (2,4)
-insert into user_role values (1,4)
+insert into user_role values (2,8)
+insert into user_role values (2,7)
+insert into user_role values (1,7)
 
 
 insert into Inventory values (1,1,NULL)
 insert into Inventory values (2,1,NULL)
-insert into Inventory values (3,2,NULL)
+insert into Inventory values (3,3,NULL)
+insert into Inventory values (4,2,NULL)
+insert into Inventory values (5,5,NULL)
+insert into Inventory values (6,7,NULL)
+insert into Inventory values (7,9,NULL)
+insert into Inventory values (8,3,NULL)
+insert into Inventory values (9,6,NULL)
+insert into Inventory values (10,7,NULL)
+insert into Inventory values (11,4,NULL)
+insert into Inventory values (12,8,NULL)
+insert into Inventory values (13,1,NULL)
+insert into Inventory values (14,1,NULL)
+insert into Inventory values (15,9,NULL)
