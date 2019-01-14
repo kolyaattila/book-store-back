@@ -10,6 +10,7 @@ import project.shop.book.Repository.UserRepository;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("sell")
@@ -21,7 +22,7 @@ public class SellController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     public SellEntity sell(@PathVariable("id") long id){
         SellEntity sellEntity= new SellEntity();
         sellEntity.setDate(new Date());
@@ -33,5 +34,22 @@ public class SellController {
         }
         return this.sellRepository.save(sellEntity);
     }
+
+    @GetMapping("/{id}")
+    public SellEntity getSellEntity(@PathVariable("id") long id){
+        try {
+            return this.sellRepository.findById(id).orElseThrow(() -> new NotFoundException("Unable to get SelEntity " + id));
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    @GetMapping("/sales")
+    public List<SellEntity> getSales(){
+        return this.sellRepository.findAll();
+    }
+
 
 }

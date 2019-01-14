@@ -30,7 +30,6 @@ public class SellEntity {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "sell")
-    @JsonIgnore
     private List<InventoryEntity> inventoryEntityList;
 
     public Date getDate() {

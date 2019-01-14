@@ -1,5 +1,6 @@
 package project.shop.book.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.internal.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -28,7 +29,7 @@ public class InventoryEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sell_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
+    @JsonIgnore
     private SellEntity sell;
 
     public long getInventoryId() {
