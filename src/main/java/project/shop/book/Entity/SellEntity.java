@@ -20,6 +20,9 @@ public class SellEntity {
 
     private Date date;
 
+    @Column(name = "sell_accepted")
+    private boolean sellAccepted;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -58,6 +61,14 @@ public class SellEntity {
 
     public Long getSellId() {
         return sellId;
+    }
+
+    public boolean isSellAccepted() {
+        return sellAccepted;
+    }
+
+    public void setSellAccepted(boolean sellAccepted) {
+        this.sellAccepted = sellAccepted;
     }
 
     @Override

@@ -11,6 +11,7 @@ import project.shop.book.Repository.InventoryRepository;
 import project.shop.book.Repository.SellRepository;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +28,20 @@ public class InventoryController {
 
     @Autowired
     private SellRepository sellRepository;
+
+    @PostMapping("/addBook/{quantity}")
+    List<InventoryEntity> addBook(@RequestBody @Valid BookEntity book,@PathVariable("quantity") int quantity){
+        List<InventoryEntity> inventoryEntityList = new ArrayList<>();
+        BookEntity bookEntity = this.bookRepository.findByBookId(book.getBookId());
+        for(int i=0;i<quantity;i++){
+            InventoryEntity inventoryEntity = new InventoryEntity();
+            inventoryEntity.setSell(null);
+            inventoryEntity.setBook(bookEntity);
+            this.inventoryRepository.save(inventoryEntity);
+            inventoryEntityList.add(inventoryEntity);
+        }
+        return inventoryEntityList;
+    }
 
     @PostMapping("/disponible/{number}")
     boolean checkdisponibleBook(@RequestBody @Valid BookEntity book,@PathVariable("number") int numar){

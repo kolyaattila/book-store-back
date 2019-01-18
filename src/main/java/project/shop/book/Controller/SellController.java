@@ -47,11 +47,29 @@ public class SellController {
         }
         return null;
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/sales")
     public List<SellEntity> getSales(){
         return this.sellRepository.findAll();
     }
 
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/acceptCommand/{sellId}")
+    public SellEntity acceptCommand(@PathVariable("sellId") long sellId) {
+        SellEntity sellEntity;
+        try {
+            sellEntity = this.sellRepository.findById(sellId).orElseThrow(() -> new NotFoundException("Not found SellEntity with id : " + sellId));
+        }
+        catch(NotFoundException e){
+            System.out.println(e);
+            return null;
+        }
+        //sent email
+        sellEntity.setSellAccepted(true);
+        this.sellRepository.save(sellEntity);
+        return sellEntity;
+    }
 
 }
